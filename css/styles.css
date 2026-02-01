@@ -1972,12 +1972,13 @@ p:last-child { margin-bottom: 0; }
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 380px;
+  height: 280px;
   display: flex;
   align-items: flex-end;
   text-decoration: none;
   color: #fff;
   transition: all var(--transition-slow);
+  border-bottom: 2px solid rgba(201, 169, 110, 0.3);
 }
 .procedure-category-card:hover {
   transform: translateY(-6px);
@@ -1993,6 +1994,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-slower);
 }
 .procedure-category-card:hover .procedure-card-bg img {
@@ -2188,7 +2190,7 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: repeat(2, 1fr);
   }
   .procedure-category-card {
-    min-height: 320px;
+    height: 240px;
   }
 }
 @media (max-width: 768px) {
@@ -2196,7 +2198,7 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: 1fr;
   }
   .procedure-category-card {
-    min-height: 280px;
+    height: 200px;
   }
   .procedure-card-cta {
     opacity: 1;
@@ -2223,6 +2225,134 @@ p:last-child { margin-bottom: 0; }
     width: 72px;
     height: 72px;
     font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   SCROLL-DRIVEN EFFECTS & DYNAMIC MOTION
+   ============================================ */
+
+/* --- Smooth Section Transitions --- */
+html {
+  scroll-snap-type: y proximity;
+}
+.section,
+.stats-bar,
+.hero,
+.philosophy-manifesto,
+.quiz-section,
+.cta,
+.testimonials {
+  scroll-margin-top: var(--header-height-scrolled);
+  scroll-snap-align: start;
+}
+
+/* --- Parallax GPU Acceleration --- */
+.section-alt,
+.section-dark,
+[data-parallax="true"] {
+  will-change: transform;
+}
+
+/* --- New Animation: scale-in --- */
+@keyframes scaleInNew {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in {
+  animation: scaleInNew 0.6s var(--ease-out) forwards;
+}
+
+/* --- New Animation: slide-in-right --- */
+@keyframes slideInRightNew {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-right {
+  animation: slideInRightNew 0.7s var(--ease-out) forwards;
+}
+
+/* --- Image Reveal Effect --- */
+.img-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.img-reveal.img-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Breathing Animation for Intro Badge --- */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.intro-badge {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* --- Floating Animation for Quiz Icon --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.quiz-icon {
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* --- Testimonial Scroll Progress Bar --- */
+.testimonial-progress {
+  width: 100%;
+  height: 3px;
+  background: var(--color-border-light);
+  border-radius: 2px;
+  margin-top: var(--space-lg);
+  overflow: hidden;
+  position: relative;
+}
+.testimonial-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-dark));
+  border-radius: 2px;
+  transition: width 0.4s var(--ease-in-out);
+  width: 25%;
+}
+
+/* --- Staggered children delay helpers --- */
+.services-categories > *,
+.procedure-category-cards > *,
+.features-grid > *,
+.gallery-grid > * {
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: var(--ease-out);
+}
+
+/* --- Disable parallax + breathing on mobile / reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .intro-badge {
+    animation: none;
+  }
+  .quiz-icon {
+    animation: none;
+  }
+  .img-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-alt,
+  .section-dark,
+  [data-parallax="true"] {
+    will-change: auto;
+    transform: none !important;
   }
 }
 
