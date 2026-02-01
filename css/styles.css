@@ -80,6 +80,7 @@
   --transition-slower: 0.8s var(--ease-out);
 
   /* Header */
+  --top-bar-height: 36px;
   --header-height: 80px;
   --header-height-scrolled: 64px;
 }
@@ -281,8 +282,18 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-text-on-dark-muted);
   font-size: 0.85rem;
   padding: 0.5rem 0;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--top-bar-height);
   z-index: 1001;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+.top-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 .top-bar-content {
   display: flex;
@@ -308,7 +319,7 @@ p:last-child { margin-bottom: 0; }
    ============================================ */
 .header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--top-bar-height); left: 0; right: 0;
   z-index: 1000;
   height: var(--header-height);
   transition: all var(--transition-base);
@@ -316,6 +327,7 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 2px 20px rgba(0,0,0,0.15);
 }
 .header.scrolled {
+  top: 0;
   background: var(--color-bg-dark);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,0.25);
@@ -471,6 +483,7 @@ p:last-child { margin-bottom: 0; }
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-top: calc(var(--top-bar-height) + var(--header-height));
 }
 .hero-bg {
   position: absolute;
@@ -1389,7 +1402,7 @@ p:last-child { margin-bottom: 0; }
    ============================================ */
 .page-hero {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  padding: calc(var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
+  padding: calc(var(--top-bar-height) + var(--header-height) + var(--space-4xl)) 0 var(--space-3xl);
   text-align: center;
 }
 .page-hero h1 { color: #fff; margin-bottom: var(--space-md); }
@@ -1829,7 +1842,7 @@ p:last-child { margin-bottom: 0; }
     background: var(--color-primary);
     flex-direction: column;
     align-items: stretch;
-    padding: calc(var(--header-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+    padding: calc(var(--top-bar-height) + var(--header-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
     gap: 0;
     overflow-y: auto;
     box-shadow: -10px 0 30px rgba(0,0,0,0.2);

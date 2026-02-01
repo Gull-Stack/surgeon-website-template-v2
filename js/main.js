@@ -51,9 +51,12 @@ function initMobileMenu() {
 /* Sticky Header */
 function initStickyHeader() {
   const header = document.querySelector('.header');
+  const topBar = document.querySelector('.top-bar');
   if (!header) return;
   const onScroll = () => {
-    header.classList.toggle('scrolled', window.scrollY > 100);
+    const scrolled = window.scrollY > 100;
+    header.classList.toggle('scrolled', scrolled);
+    if (topBar) topBar.classList.toggle('hidden', scrolled);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
