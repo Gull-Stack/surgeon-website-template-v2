@@ -1846,6 +1846,387 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================
+   V2 DESIGN UPGRADES — Lakeshore-Inspired
+   ============================================ */
+
+/* --- Hero Ornament --- */
+.hero-ornament {
+  width: 48px;
+  height: 2px;
+  background: var(--color-secondary);
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+.hero-ornament::before {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.55rem;
+  color: var(--color-secondary);
+  background: transparent;
+  padding: 0 0.35rem;
+}
+
+/* --- Philosophy / Manifesto Section --- */
+.philosophy-manifesto {
+  position: relative;
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+  padding: var(--space-5xl) 0;
+  overflow: hidden;
+  text-align: center;
+}
+.philosophy-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(circle at 20% 50%, var(--color-secondary) 1px, transparent 1px),
+    radial-gradient(circle at 80% 50%, var(--color-secondary) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.philosophy-manifesto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+}
+.philosophy-manifesto::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+}
+.philosophy-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.philosophy-ornament {
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-xl);
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+}
+.philosophy-lead-quote {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  line-height: 1.5;
+  color: var(--color-text-on-dark);
+  margin: 0 0 var(--space-2xl);
+  padding: 0;
+  border: none;
+}
+.philosophy-lead-quote em {
+  color: var(--color-secondary);
+  font-style: italic;
+}
+.philosophy-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-secondary);
+  margin: 0 auto var(--space-2xl);
+  opacity: 0.6;
+}
+.philosophy-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--color-text-on-dark-muted);
+  margin-bottom: var(--space-lg);
+  font-weight: 300;
+}
+.philosophy-body em {
+  color: var(--color-secondary-light);
+  font-style: italic;
+}
+.philosophy-signature {
+  display: inline-block;
+  margin-top: var(--space-xl);
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* --- Procedure Category Cards --- */
+.procedure-category-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+}
+.procedure-category-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  color: #fff;
+  transition: all var(--transition-slow);
+}
+.procedure-category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  color: #fff;
+}
+.procedure-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.procedure-card-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slower);
+}
+.procedure-category-card:hover .procedure-card-bg img {
+  transform: scale(1.08);
+}
+.procedure-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 31, 46, 0.1) 0%,
+    rgba(26, 31, 46, 0.5) 50%,
+    rgba(26, 31, 46, 0.85) 100%
+  );
+  transition: background var(--transition-base);
+}
+.procedure-category-card:hover .procedure-card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 31, 46, 0.05) 0%,
+    rgba(26, 31, 46, 0.35) 50%,
+    rgba(26, 31, 46, 0.75) 100%
+  );
+}
+.procedure-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-2xl);
+  width: 100%;
+}
+.procedure-card-icon {
+  font-size: 1.2rem;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+.procedure-card-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
+}
+.procedure-card-tagline {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: var(--space-md);
+  line-height: 1.4;
+}
+.procedure-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all var(--transition-base);
+}
+.procedure-category-card:hover .procedure-card-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+.procedure-card-cta i {
+  font-size: 0.7rem;
+  transition: transform var(--transition-fast);
+}
+.procedure-category-card:hover .procedure-card-cta i {
+  transform: translateX(3px);
+}
+
+/* --- Premium Testimonial Cards --- */
+.testimonial-card.premium {
+  border: 1px solid var(--color-border);
+  border-bottom: 3px solid var(--color-secondary);
+  padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+  background: #fff;
+  position: relative;
+}
+.testimonial-card.premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+  opacity: 0.4;
+}
+.testimonial-pull-quote {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.4;
+  margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: var(--space-lg);
+}
+.testimonial-pull-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-secondary);
+  border-radius: 2px;
+}
+.testimonial-card.premium .testimonial-text {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--color-text-light);
+}
+.testimonial-card.premium .testimonial-text::before {
+  display: none;
+}
+.author-detail {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Why Choose Us — Enhanced --- */
+.section-dark.why-choose-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+.section-dark .features-grid .feature {
+  position: relative;
+}
+.section-dark .features-grid .feature-icon {
+  width: 80px;
+  height: 80px;
+  font-size: 1.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(201, 169, 110, 0.1);
+  position: relative;
+  z-index: 1;
+}
+.section-dark .features-grid .feature-icon::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(201, 169, 110, 0.15);
+  z-index: -1;
+  transition: all var(--transition-base);
+}
+.section-dark .features-grid .feature:hover .feature-icon::before {
+  border-color: var(--color-secondary);
+  inset: -8px;
+}
+.section-dark .features-grid .feature:hover .feature-icon {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* Why Choose Us background pattern */
+.section-dark {
+  position: relative;
+}
+.section-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(30deg, var(--color-secondary) 12%, transparent 12.5%, transparent 87%, var(--color-secondary) 87.5%, var(--color-secondary)),
+    linear-gradient(150deg, var(--color-secondary) 12%, transparent 12.5%, transparent 87%, var(--color-secondary) 87.5%, var(--color-secondary)),
+    linear-gradient(30deg, var(--color-secondary) 12%, transparent 12.5%, transparent 87%, var(--color-secondary) 87.5%, var(--color-secondary)),
+    linear-gradient(150deg, var(--color-secondary) 12%, transparent 12.5%, transparent 87%, var(--color-secondary) 87.5%, var(--color-secondary)),
+    linear-gradient(60deg, rgba(201,169,110,0.5) 25%, transparent 25.5%, transparent 75%, rgba(201,169,110,0.5) 75%, rgba(201,169,110,0.5)),
+    linear-gradient(60deg, rgba(201,169,110,0.5) 25%, transparent 25.5%, transparent 75%, rgba(201,169,110,0.5) 75%, rgba(201,169,110,0.5));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  pointer-events: none;
+  z-index: 0;
+}
+.section-dark > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Responsive: Procedure Category Cards --- */
+@media (max-width: 1024px) {
+  .procedure-category-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .procedure-category-card {
+    min-height: 320px;
+  }
+}
+@media (max-width: 768px) {
+  .procedure-category-cards {
+    grid-template-columns: 1fr;
+  }
+  .procedure-category-card {
+    min-height: 280px;
+  }
+  .procedure-card-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive: Philosophy Section --- */
+@media (max-width: 768px) {
+  .philosophy-manifesto {
+    padding: var(--space-3xl) 0;
+  }
+  .philosophy-lead-quote {
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  }
+  .philosophy-body {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Responsive: Enhanced Feature Icons --- */
+@media (max-width: 768px) {
+  .section-dark .features-grid .feature-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
    PRINT STYLES
    ============================================ */
 @media print {

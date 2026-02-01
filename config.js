@@ -16,8 +16,8 @@ const SITE_CONFIG = {
   doctorCredentials: "MD, FACS",
   doctorTitle: "Board-Certified Plastic Surgeon",
   tagline: "Where Artistry Meets Precision",
-  heroHeadline: "Reveal Your Most Confident Self",
-  heroSubheadline: "Board-Certified Plastic Surgery — Trusted by Thousands",
+  heroHeadline: "Beauty Speaks Through You",
+  heroSubheadline: "The Art of Transformation — Beverly Hills",
   heroDescription: "Experience world-class care and natural-looking results with a surgeon who combines artistic vision with surgical precision.",
   yearEstablished: 2005,
 
