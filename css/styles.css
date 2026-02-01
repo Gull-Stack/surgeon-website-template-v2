@@ -2047,15 +2047,16 @@ p:last-child { margin-bottom: 0; }
 
 /* --- Procedure Category Cards --- */
 .procedure-category-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
+  display: flex;
+  gap: 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 .procedure-category-card {
   position: relative;
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 280px;
+  height: 380px;
+  flex: 1 1 0%;
   display: flex;
   align-items: flex-end;
   text-decoration: none;
@@ -2270,18 +2271,20 @@ p:last-child { margin-bottom: 0; }
 /* --- Responsive: Procedure Category Cards --- */
 @media (max-width: 1024px) {
   .procedure-category-cards {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
   }
   .procedure-category-card {
-    height: 240px;
+    flex: 1 1 50%;
+    height: 280px;
   }
 }
 @media (max-width: 768px) {
   .procedure-category-cards {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   .procedure-category-card {
-    height: 200px;
+    flex: 1 1 100%;
+    height: 220px;
   }
   .procedure-card-cta {
     opacity: 1;
