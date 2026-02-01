@@ -19,7 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
   initParallaxScroll();
   initStaggeredChildren();
   initImageReveal();
+  initVideoLoop();
 });
+
+/* Video Loop — JS-based to prevent Safari scroll-to-top on native loop */
+function initVideoLoop() {
+  document.querySelectorAll('#hero-video, .js-loop-video').forEach(function(v) {
+    v.removeAttribute('loop');
+    v.addEventListener('ended', function() {
+      v.currentTime = 0;
+      v.play();
+    });
+  });
+}
 
 /* Mobile Menu */
 function initMobileMenu() {
