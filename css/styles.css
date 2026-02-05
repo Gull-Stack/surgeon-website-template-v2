@@ -2580,7 +2580,9 @@ html {
 .image-breaker-bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: var(--navy);
 }
 .image-breaker-overlay {
   position: absolute;
