@@ -498,6 +498,10 @@ p:last-child { margin-bottom: 0; }
   object-fit: cover;
   will-change: transform;
 }
+.hero-bg video {
+  object-fit: contain;
+  background: var(--navy);
+}
 .hero-overlay {
   position: absolute;
   inset: 0;
