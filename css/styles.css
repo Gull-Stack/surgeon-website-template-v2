@@ -775,6 +775,11 @@ p:last-child { margin-bottom: 0; }
   object-position: center 20%;
   transition: transform var(--transition-slower);
 }
+.signature-card-image img[src*="breast-augmentation"] {
+  object-fit: contain;
+  object-position: center;
+  background: var(--navy);
+}
 .signature-card:hover .signature-card-image img { transform: scale(1.05); }
 .signature-card-image::after {
   content: '';
