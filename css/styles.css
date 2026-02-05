@@ -1334,6 +1334,7 @@ p:last-child { margin-bottom: 0; }
 .cta-video {
   position: relative;
   overflow: hidden;
+  min-height: 500px;
 }
 .cta-bg {
   position: absolute;
