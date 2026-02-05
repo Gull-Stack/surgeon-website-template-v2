@@ -772,12 +772,8 @@ p:last-child { margin-bottom: 0; }
 .signature-card-image img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: top center;
   transition: transform var(--transition-slower);
-}
-.signature-card-image img[src*="mommy-makeover"] {
-  object-fit: contain;
-  object-position: center top;
-  background: var(--navy);
 }
 .signature-card:hover .signature-card-image img { transform: scale(1.05); }
 .signature-card-image::after {
