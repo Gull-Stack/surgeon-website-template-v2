@@ -499,8 +499,8 @@ p:last-child { margin-bottom: 0; }
   will-change: transform;
 }
 .hero-bg video {
-  object-fit: contain;
-  background: var(--navy);
+  object-fit: cover;
+  object-position: center top;
 }
 .hero-overlay {
   position: absolute;
